@@ -1,0 +1,39 @@
+version: "3"
+services:
+  traefik:
+    image: traefik
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik/acme:/etc/traefik/acme
+  app:
+    build: ./app
+    volumes:
+      - ./app:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=app-be"
+      - "traefik.frontend.rule=Host:app.greymatterbay.com"
+      - "traefik.protocol=https"
+  blog:
+    build: ./blog
+    volumes:
+      - ./blog:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=blog-be"
+      - "traefik.frontend.rule=Host:blog.greymatterbay.com"
+      - "traefik.protocol=https"
+  website:
+    build: ./website
+    volumes:
+      - ./website:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=website-be"
+      - "traefik.frontend.rule=Host:greymatterbay.com"
+      - "traefik.protocol=https"
