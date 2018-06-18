@@ -25,10 +25,12 @@ exposedByDefault = false
 
 [acme]
 email = "kajohterna@gmail.com"
-storageFile = "/etc/traefik/acme/acme.json"
+storage = "/etc/traefik/acme/acme.json"
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 entryPoint = "https"
-acmeLogging = true
-onDemand = false
-onHostRule = true
   [acme.httpChallenge]
   entryPoint = "http"
+
+  [[acme.domains]]
+    main = "greymatterbay.com"
+    sans = ["app.greymatterbay.com", "blog.greymatterbay.com"]
