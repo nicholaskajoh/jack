@@ -3,9 +3,6 @@ debug = false
 logLevel = "ERROR"
 defaultEntryPoints = ["https","http"]
 
-[web]
-address = ":8080"
-
 [entryPoints]
   [entryPoints.http]
   address = ":80"
@@ -14,6 +11,15 @@ address = ":8080"
   [entryPoints.https]
   address = ":443"
   [entryPoints.https.tls]
+
+  [entryPoints.dashboard]
+    address=":8080"
+    [entryPoints.dashboard.auth]
+      [entryPoints.dashboard.auth.basic]
+        usersFile = "/etc/traefik/.htpasswd"
+
+[api]
+entrypoint = "dashboard"
 
 [retry]
 

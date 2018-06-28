@@ -10,6 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
       - ./traefik/acme:/etc/traefik/acme
+      - ./traefik/.htpasswd:/etc/traefik/.htpasswd
   app:
     build: ./app
     volumes:
