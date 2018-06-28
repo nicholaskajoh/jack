@@ -18,7 +18,6 @@ services:
       - "traefik.enable=true"
       - "traefik.backend=app-be"
       - "traefik.frontend.rule=Host:app.greymatterbay.com"
-      - "traefik.protocol=https"
   blog:
     build: ./blog
     volumes:
@@ -27,7 +26,6 @@ services:
       - "traefik.enable=true"
       - "traefik.backend=blog-be"
       - "traefik.frontend.rule=Host:blog.greymatterbay.com"
-      - "traefik.protocol=https"
   website:
     build: ./website
     volumes:
@@ -36,4 +34,3 @@ services:
       - "traefik.enable=true"
       - "traefik.backend=website-be"
       - "traefik.frontend.rule=Host:greymatterbay.com"
-      - "traefik.protocol=https"
