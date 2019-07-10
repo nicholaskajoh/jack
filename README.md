@@ -1,5 +1,6 @@
 # Jack
 A project that demonstrates how to run multiple apps on one server using Docker and Traefik.
+You can find the explanation here: https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/.
 
 ## Dev setup
 - Clone/download this repo
